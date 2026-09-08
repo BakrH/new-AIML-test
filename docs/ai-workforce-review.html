@@ -244,7 +244,7 @@ a{color:var(--brass)}
 <div class="wrap">
 
 <header class="mast">
-  <span class="kicker">Implementation review &middot; Manual v1.0</span>
+  <span class="kicker">Implementation review &middot; Manual v1.0 &middot; Revision 2</span>
   <h1>BCS AI Workforce Review</h1>
   <p class="standfirst">An assessment of the draft operating manual against the actual plan — ProposalApp marketing through fulfillment first, then BCS-CG GovCon, then CMMC CISO delivery — with a task-by-task judgment on what a two-to-three-person team should hand to agents and what it must keep.</p>
   <div class="mast-meta">
@@ -256,20 +256,58 @@ a{color:var(--brass)}
 
 <div class="verdict">
   <span class="kicker">Verdict</span>
-  <p>The manual is <strong>architecturally sound and operationally too heavy for the team that has to run it.</strong> Its core design decisions are the right ones and unusually well chosen: a hard CUI/FCI boundary declared before anything else, a shared work record with structured handoffs instead of passing chat history between models, and an approval matrix that separates drafting from sending from committing. Those three choices are what most AI-workforce plans get wrong, and they are the reason this plan is worth building on rather than rewriting.</p>
-  <p>What it does not survive is its own headcount. The manual names <strong>nine distinct human roles and twenty-six sequential build gates</strong>, then hands them to two or three people who also have to sell, deliver, and keep the lights on. Roughly forty to sixty hours of governance labor lands before a single draft is produced, separation of duties collapses the moment one person wears three hats, and the thirteen-system tool stack carries recurring cost against pilot volumes too small to justify it.</p>
-  <p>Two substantive content gaps matter more than any of that. <strong>The demo and fulfillment stages of ProposalApp — the user's own stated phase-one scope — are absent from the manual entirely</strong>, and fulfillment is where the delegation return actually lives. Fixing that surfaces a contradiction the draft never resolves: agents are forbidden from touching sensitive data, yet white-glove proposal production is the deliverable. That needs a tiered data model, not a blanket prohibition.</p>
+  <p>The manual is <strong>architecturally sound and operationally too heavy for the team that has to run it.</strong> Its core design decisions are the right ones and unusually well chosen: a hard CUI/FCI boundary declared before anything else, a shared work record with structured handoffs instead of passing chat history between models, and an approval matrix that separates drafting from sending from committing. Those three choices are what most AI-workforce plans get wrong, and they are why this plan is worth building on rather than rewriting.</p>
+  <p>Your answers resolve both blocking questions and, on balance, <strong>improve the outlook</strong>. Three separate teams of two to three means supervision capacity is roughly triple what I assumed, and the phases can overlap far more than the manual allows. The bottleneck is no longer headcount but the single shared platform role. Two things got harder rather than easier: <strong>some of those people are external to BCS</strong>, which the access model does not contemplate at all, and the CMMC market moved under the plan while it was being written.</p>
+  <p>The one finding that survives unchanged and unsoftened is the largest: <strong>the demo and fulfillment stages of ProposalApp are absent from the manual</strong>, and confirming that BCS staff author 80&ndash;90% of client proposal drafts makes that gap the centre of the whole programme rather than an omission at its edge. Fulfillment is where the delegation return is, where the data questions live, and where hard deadlines make agent reliability a client-facing risk for the first time.</p>
   <div class="score">
-    <div><dt>Data boundary &amp; prohibited work</dt><dd>Keep as written<span class="sub">Strongest section. The existential risk for a compliance firm, handled first.</span></dd></div>
-    <div><dt>Work record &amp; handoff</dt><dd>Keep as written<span class="sub">Correct architecture. Add fulfillment-specific fields.</span></dd></div>
-    <div><dt>Governance &amp; role model</dt><dd>Compress<span class="sub">Nine roles into three hats with a non-self-approvable list.</span></dd></div>
-    <div><dt>Build sequence (A–Z)</dt><dd>Re-order<span class="sub">Sound content, wrong order. Value before ceremony.</span></dd></div>
-    <div><dt>Tool stack &amp; model routing</dt><dd>Defer<span class="sub">Two of thirteen systems are not needed until unattended writes exist.</span></dd></div>
-    <div><dt>Demo, fulfillment, delivery</dt><dd>Missing<span class="sub">Phase-one scope with no procedure, and the largest hour pool.</span></dd></div>
-    <div><dt>Economic model</dt><dd>Missing<span class="sub">No baseline hours, no cost cap, no break-even.</span></dd></div>
-    <div><dt>Delegation analysis</dt><dd>Missing<span class="sub">Agents are described by role, never by task value. Supplied below.</span></dd></div>
+    <div><dt>Data boundary &amp; prohibited work</dt><dd>Keep &mdash; and reframe<span class="sub">Not just risk control. Kept clean, it is what keeps BCS out of CMMC assessment scope entirely.</span></dd></div>
+    <div><dt>Work record &amp; handoff</dt><dd>Keep as written<span class="sub">Correct architecture. Add fulfillment and deadline fields.</span></dd></div>
+    <div><dt>Governance &amp; role model</dt><dd>Restructure<span class="sub">Nine roles into four, with cross-program review and an external-personnel policy.</span></dd></div>
+    <div><dt>Build sequence (A&ndash;Z)</dt><dd>Re-order &amp; parallelize<span class="sub">Three teams can run concurrently. One shared role cannot.</span></dd></div>
+    <div><dt>Tool stack &amp; model routing</dt><dd>Consolidate<span class="sub">Five model vendors, two personal accounts, and nothing funding the automation.</span></dd></div>
+    <div><dt>Demo, fulfillment, delivery</dt><dd>Missing<span class="sub">Confirmed as the core service. No procedure, and the largest hour pool.</span></dd></div>
+    <div><dt>Economic model</dt><dd>Missing<span class="sub">Spend is known now; there is still no cap, baseline, or break-even.</span></dd></div>
+    <div><dt>Regulatory currency</dt><dd>New gap<span class="sub">CMMC Phase&nbsp;II was suspended in July. Content built from older sources will be wrong.</span></dd></div>
   </div>
 </div>
+
+<section>
+  <div class="sec-head"><span class="sec-num">00</span><h2>What your answers changed</h2></div>
+  <p class="lede">Five answers, and what each one does to the plan. Two loosen it, three tighten it.</p>
+  <div class="tscroll">
+    <table>
+      <caption><span class="ct">Answers and consequences</span><span class="cr">Effect on the manual &middot; not a summary of the answer</span></caption>
+      <thead><tr><th style="width:22%">Question</th><th style="width:26%">Your answer</th><th style="width:52%">What it changes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Staffing overlap</td>
+          <td>2&ndash;3 unique people per program, internal <em>and</em> external, 6&ndash;9 total</td>
+          <td><strong>Loosens sequencing, tightens access control.</strong> Programs can run concurrently, and cross-program review restores separation of duties without hiring. But external personnel need named identities, NDAs before access, documented offboarding, and client consent to subcontractors &mdash; none of which the manual covers. See <span class="mono">F-1</span>.</td>
+        </tr>
+        <tr>
+          <td>White-glove scope</td>
+          <td>BCS authors 80&ndash;90% ready drafts, augments the client's proposal team, weekly sync</td>
+          <td><strong>Makes fulfillment the centre of the programme.</strong> Confirms the missing section is the important one, and confirms a working data class between public and prohibited. Good news on scope: pre-award proposal content is largely <em>not</em> FCI, so the obligation is contractual rather than regulatory &mdash; with a narrow exception that needs targeting. See <span class="mono">F-4</span>.</td>
+        </tr>
+        <tr>
+          <td>ProposalApp data</td>
+          <td>No CUI, generic company data, client controls sharing, no third-party access</td>
+          <td><strong>Largely closes the product risk, opens a commitments question.</strong> "No one has access except them" is a representation GovCon buyers will test. It needs to be technically true and written into the terms, with an ingest control for clients who upload CUI anyway. See <span class="mono">F-9</span>.</td>
+        </tr>
+        <tr>
+          <td>CMMC role</td>
+          <td>CISO/RP services, possible RPO, separate tooling from ProposalApp</td>
+          <td><strong>Dissolves the independence conflict, replaces it with a scope question.</strong> RPOs advise and do not assess, so there is no C3PAO problem. Better still: a cleanly scoped advisory relationship generally does not make BCS an external service provider at all &mdash; which turns the Tier&nbsp;3 boundary into a business asset. See <span class="mono">F-10</span> and section&nbsp;05.</td>
+        </tr>
+        <tr>
+          <td>Tool ceiling</td>
+          <td>&asymp;$630/mo across 8 vendors; open to Hermes and Composio</td>
+          <td><strong>Reveals the real gap.</strong> None of the current spend funds unattended automation &mdash; chat seats are not programmatic access. The incremental cost is smaller than expected; the consolidation saving is larger. The genuine budget risk is neither models nor runtime. See section&nbsp;06.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
 <section>
   <div class="sec-head"><span class="sec-num">01</span><h2>What holds up under pressure</h2></div>
@@ -291,9 +329,10 @@ a{color:var(--brass)}
     <div class="finding">
       <span class="fid">F-1</span>
       <div>
-        <h3>Nine roles, three people, no separation of duties</h3>
-        <p>The manual assigns work to an executive sponsor, AI operations administrator, revenue operations owner, security reviewer, ProposalApp sales owner, knowledge owner, technical owner, operations owner, and system administrator. At two or three co-workers, one person is simultaneously the agent owner requesting a change, the technical owner making it, and the security reviewer approving it. The approval ceremony still runs; it just stops meaning anything.</p>
-        <div class="fix"><b>Fix</b>Collapse to three hats — <span class="mono">SPONSOR</span> (offer, pricing, autonomy, production authorization), <span class="mono">OPERATOR</span> (agent config, knowledge, runtime, evals), <span class="mono">REVENUE</span> (pipeline, sends, relationship ownership) — and publish a short list of actions that may never be self-approved regardless of hats: expanding an agent's write scope, expanding autonomy, sending a first-touch message, and resuming after a sensitive-information event. Those four need a second named human, and if only two people exist, the sponsor is always the second.</div>
+        <h3>Nine roles, and now external people inside them</h3>
+        <p>The manual assigns work to nine named owners. Three separate teams make that less crushing than it looked &mdash; but the roles still collapse per program, and one person remains the requester, the implementer, and the security approver of their own change. With three programs there is now a free fix the manual does not use: <strong>cross-program review</strong>. Program A's lead approves Program B's access and autonomy changes. Separation of duties without new headcount.</p>
+        <p>The larger issue is the one your answer introduced. Some of these six to nine people are <strong>external to BCS</strong>, and the access model does not contemplate non-employees anywhere. External personnel with access to HubSpot, the work ledger, agent configuration, and client proposal material is a third-party risk surface with no policy attached. For the CMMC program it is also a credentialing constraint: advisory work delivered under an RPO banner is performed by Registered Practitioners, so an external contractor doing that work needs to actually hold the credential, not merely be competent.</p>
+        <div class="fix"><b>Fix</b>Four roles, not nine. <span class="mono">SPONSOR</span> (one, firm-wide: pricing, autonomy, production authorization), <span class="mono">PLATFORM</span> (one, shared across all three programs: agent config, evals, access, model routing, change control &mdash; do not triplicate this or configurations drift apart), and <span class="mono">PROGRAM LEAD</span> (three, one each: pipeline, sends, delivery, relationships). Security review is a duty assigned to a program lead from a different program, never to <span class="mono">PLATFORM</span>. Four actions still need a second named human: expanding write scope, expanding autonomy, first-touch sends, and resuming after a sensitive-information event.<br><br>Then add the external-personnel policy the manual is missing: executed NDA before any access; individually named identities with no shared logins; access scoped to one program namespace; offboarding with token revocation inside 24 hours and a named owner for it; client consent to subcontractors confirmed in the engagement letter before an external touches client material; and for CMMC advisory, RP credentials verified and recorded.</div>
       </div>
     </div>
 
@@ -309,19 +348,21 @@ a{color:var(--brass)}
     <div class="finding">
       <span class="fid">F-3</span>
       <div>
-        <h3>Thirteen systems and seven model routes at pilot volume</h3>
-        <p>The stack is ChatGPT, Codex, Claude, Gemini, Grok, Hermes, Composio, Buzz, HubSpot, ClickUp, Drive, GitHub and Apollo. Most carry per-seat or per-workspace cost. The routing table then assigns primary and fallback models across seven work types — but the pilot's stated volume is twenty scored accounts and five outreach records, which is far too little signal to distinguish model quality on any of those routes. You would be paying for optionality you cannot measure.</p>
-        <div class="fix"><b>Fix</b>One primary model family plus one fallback for the whole pilot; drop Gemini and Grok from the table until a specific measured shortfall justifies adding them. Hermes and Composio solve unattended scheduling and scoped OAuth for writes — real problems, but problems you do not have until an agent writes to a live system without a human present. Defer both to Wave&nbsp;2 and run human-triggered sessions until then. Keep GitHub from day one; versioned configuration is cheap and the thing you will most regret skipping.</div>
+        <h3>Nothing you currently pay for can run the automation</h3>
+        <p>This is the correction that matters most in the budget, and it is easy to miss. ChatGPT Pro, Claude Max, and Claude Team seats are <strong>human-interface subscriptions</strong>. They are not programmatic access, and they do not authorize a scheduled process to run unattended against your systems at three in the morning. Hermes and Composio both need API credentials billed by usage &mdash; so the agent workforce is a <em>new</em> line item, not something the existing $630 a month already covers. Any plan that assumes otherwise under-budgets the whole programme.</p>
+        <p>The good news is that the new line item is small at your volumes &mdash; the estimate in section 06 lands around $150&ndash;300 a month for phase one, dominated almost entirely by research. The routing table is still over-built: seven work types with primary and fallback models, against a pilot of twenty scored accounts and five outreach records. That is far too little signal to tell those routes apart, and you would be paying in complexity rather than dollars.</p>
+        <div class="fix"><b>Fix</b>Budget agent API usage explicitly, separately from seats. Collapse the routing table to one primary model plus one fallback &mdash; which still satisfies the manual's own rule that an independent reviewer must not rely solely on the drafting model, and that rule is the only real argument for keeping a second vendor. Retire the routes you cannot measure. Keep GitHub from day one; versioned configuration is nearly free and the thing you would most regret skipping. Hermes and Composio are worth adding, but at Wave&nbsp;2, when unattended scheduled writes are actually the requirement rather than an anticipated one.</div>
       </div>
     </div>
 
     <div class="finding">
       <span class="fid">F-4</span>
       <div>
-        <h3>Demo and fulfillment are absent — and they conflict with the data rule</h3>
-        <p>The stated phase-one scope is <em class="q">marketing &amp; demo to fulfillment</em>. The manual covers research, outreach, reply handling, meeting prep and onboarding status, then stops. There is no procedure for demo delivery, demo-to-proposal conversion, proposal production, compliance review of a delivered proposal, format and page-limit QA, or fulfillment capacity planning. That is the majority of the billable work and the largest single pool of delegable hours.</p>
-        <p>Writing it exposes the contradiction. The manual forbids agents from touching contract-sensitive material; white-glove proposal production for GovCon clients means working inside exactly that material — draft technical approaches, past performance narratives, pricing structure, and in many cases federal contract information. A blanket prohibition would exclude agents from the work you are selling.</p>
-        <div class="fix"><b>Fix</b>Replace the binary with three data classes and bind each to an environment. <span class="mono">CLASS-P</span> — published solicitation text, agency budget documents, award history, client-approved boilerplate and capability statements: fully agent-accessible. <span class="mono">CLASS-B</span> — client business information that is neither FCI nor CUI, released to BCS under NDA: agent-accessible only in the named commercial workspace, with per-engagement client consent recorded in the work record. <span class="mono">CLASS-R</span> — FCI, CUI, pricing, reps and certifications, and anything a client has marked restricted: human-only, handled in the controlled environment, never entering a prompt. Then state the fulfillment tasks against those classes rather than against agent roles, and get client consent for CLASS-B in the engagement letter, not by exception later.</div>
+        <h3>Fulfillment is the service, and the manual stops before it</h3>
+        <p>You confirmed the model: BCS authors 80&ndash;90% ready drafts, augments the client's proposal team, and syncs weekly. The manual covers research, outreach, reply handling, meeting prep and onboarding status &mdash; then stops. There is no procedure for demo delivery, demo-to-proposal conversion, proposal production, compliance review, format and page-limit QA, version control through client review cycles, the weekly sync package, or fulfillment capacity planning. That is the billable work and the largest single pool of delegable hours.</p>
+        <p>On the data question, the answer is <strong>less alarming than the manual's framing implies.</strong> Federal contract information is defined as information provided by or generated for the Government <em>under a contract</em> &mdash; which generally means post-award. Pre-award proposal drafting is therefore mostly not an FCI obligation at all; it is a confidentiality and competition-sensitivity obligation owed to your client under NDA. That is a contractual duty, not a regulatory one, and it is far more tractable.</p>
+        <p>The exception is narrow and worth targeting precisely: <strong>past-performance narratives describing work under existing contracts, and any material a client shares as an incumbent preparing a recompete.</strong> That subset can carry FCI, and occasionally CUI. Treat it as the controlled slice rather than treating all proposal work as suspect.</p>
+        <div class="fix"><b>Fix</b>Three data classes bound to environments, replacing the binary. <span class="mono">CLASS-P</span> &mdash; published solicitation text, agency budget documents, award history, client-approved boilerplate and capability statements: fully agent-accessible. <span class="mono">CLASS-B</span> &mdash; client business information released to BCS under NDA and neither FCI nor CUI: agent-accessible in the named commercial workspace, with per-engagement client consent recorded in the work record. <span class="mono">CLASS-R</span> &mdash; past-performance and incumbent-derived material pending determination, plus all FCI, CUI, pricing and certifications: human-only, in the controlled environment, never in a prompt.<br><br>Then make the determination a step rather than an assumption: at engagement kickoff, ask the client in writing which material they consider FCI or restricted, and default to <span class="mono">CLASS-R</span> for anything unanswered. Work in the client's environment wherever they will allow it &mdash; their controls apply, and your scope stays small. Write the fulfillment procedure against these classes rather than against agent roles.</div>
       </div>
     </div>
 
@@ -355,9 +396,30 @@ a{color:var(--brass)}
     <div class="finding">
       <span class="fid">F-8</span>
       <div>
-        <h3>Deadline-bound work has no manual fallback, and outreach has no consent policy</h3>
-        <p>Marketing has soft deadlines; fulfillment has hard ones. A proposal due date does not move because a runtime is down or a model is unavailable. The failure table handles model and tool failures generically but never states the rule that matters: no client deadline may depend on agent availability. Separately, the manual references <em class="q">consent status</em> and a <em class="q">suppression flag</em> without any underlying policy — nothing on CAN-SPAM requirements, sending-domain reputation, or the fact that automated LinkedIn actions violate the platform's terms and routinely cost accounts, which for a relationship-led GovCon practice is a real asset to lose.</p>
-        <div class="fix"><b>Fix</b>Add one sentence to the failure table: every fulfillment task an agent performs has a documented manual path, and the human owner confirms the manual path is viable before the deadline is committed. Add a short outreach compliance policy covering identification and opt-out in every message, a single authoritative suppression list checked pre-send, a separate warmed sending domain, and no automated LinkedIn actions — agents draft, a human sends from their own session.</div>
+        <h3>Deadline-bound work has no fallback, and the LinkedIn risk is already running</h3>
+        <p>Marketing has soft deadlines; proposal fulfillment has hard ones. A submission date does not move because a runtime is down. The failure table handles model and tool failures generically but never states the rule that matters: no client deadline may depend on agent availability.</p>
+        <p>The outreach risk is no longer hypothetical. <strong>SalesRobot plus two LinkedIn accounts is LinkedIn automation, running now.</strong> It violates LinkedIn's terms, and the standard consequence is account restriction or permanent ban. For a relationship-led GovCon practice those accounts and connection graphs are a real asset, and for a firm whose product is compliance credibility, running tooling that breaks a platform's terms is an awkward position to be in if a client ever asks. That is a judgment call and yours to make &mdash; but it should be a decision on the record, not a default.</p>
+        <div class="fix"><b>Fix</b>Add one line to the failure table: every fulfillment task an agent performs has a documented manual path, and the program lead confirms that path is viable <em>before</em> the deadline is committed to a client.<br><br>On outreach: decide explicitly whether the LinkedIn accounts are disposable. If they are not, move to agent-drafted and human-sent &mdash; the drafting is where nearly all the time goes, so you keep most of the leverage and lose the ban risk. Either way, add the outreach compliance policy the manual lacks: identification and opt-out in every message, one authoritative suppression list checked pre-send, and a separate warmed sending domain so cold outreach cannot damage the deliverability of client correspondence.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <span class="fid">F-9</span>
+      <div>
+        <h3>Personal accounts are holding business data, and the product makes a promise</h3>
+        <p>Two items in the current stack are personal accounts &mdash; Gemini and Perplexity, described as personal. Business and client-adjacent material flowing through consumer-tier personal accounts means no administrative control, no audit visibility, consumer retention terms rather than negotiated ones, and nothing to revoke when someone leaves. With external personnel now in scope, that last point is the sharp one. This is precisely the finding BCS would write up in a client's readiness assessment.</p>
+        <p>Separately, "no one will have access except them" is a strong representation to make about ProposalApp. GovCon buyers will test it, and a compliance-adjacent vendor gets held to a higher standard than a generic SaaS. It needs to be technically true &mdash; tenant isolation, no routine operator read access, and a documented break-glass procedure if one exists &mdash; and it needs to be in the terms rather than in a sales conversation. It also needs an ingest-side control, because a client will eventually upload something they should not, whatever the policy says.</p>
+        <div class="fix"><b>Fix</b>Move every tool holding business data onto org-managed plans with named accounts and an offboarding path, or stop using it for business work. For ProposalApp, write the access representation into the terms of service, confirm it matches the implementation, and add the manual's own sensitive-information procedure at the product layer: detect a likely CUI or FCI upload, stop, notify, and route the client to their own controlled channel &mdash; without BCS staff reading the content to make that determination.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <span class="fid">F-10</span>
+      <div>
+        <h3>The CMMC ground moved in July, and agents will not know</h3>
+        <p>On 13 July 2026 the Department suspended CMMC <strong>Phase&nbsp;II</strong> requirements, which would have taken effect on 10 November 2026 and required Level&nbsp;2 third-party assessments for contractors handling CUI. A reform task force was convened to review the program. <strong>Phase&nbsp;I remains fully in effect</strong> &mdash; self-assessments, DFARS 252.204-7012, NIST SP 800-171 compliance, SPRS score posting and annual affirmations all continue unchanged.</p>
+        <p>This is a live hazard for exactly the work you plan to delegate. An agent drafting CMMC education content today, working from training data or any source written before July, will state the November deadline and the third-party assessment requirement with complete confidence. Published by a firm selling CMMC advisory services, that error is worse than unhelpful &mdash; it is the single most credibility-damaging mistake available in this market, and the manual's "every fact needs a source" rule does not catch it, because a stale source is still a source.</p>
+        <div class="fix"><b>Fix</b>Add a <strong>volatile-claims register</strong> to the knowledge base: the specific claims that must be re-verified against a primary source before any publication, each with its primary-source URL and a last-verified date. Program status, deadlines, phase requirements and assessment obligations all belong on it. Then tighten the sourcing rule for this class of claim: a regulatory assertion requires a source dated after the most recent program change, not merely a source. Tie the knowledge review cadence to program events rather than to a fixed quarterly date &mdash; the task force outcome will land inside your build window.</div>
       </div>
     </div>
 
@@ -383,6 +445,7 @@ a{color:var(--brass)}
         <tr><td>Demo and meeting briefs, reminders, no-show follow-up</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span><span class="tag cm">CMMC</span></td><td>Assembly from records that already exist. Low judgment, high reliability gain, and it is the task most often skipped when a small team is busy.</td><td>Runs the demo. Reviews the brief the morning of.</td></tr>
         <tr><td>Demo recap and next-step draft</td><td><span class="tag pa">PA</span></td><td>Drafted from a sanitized operational summary, never from a raw recording or client file.</td><td>Edits and sends. Sets the commercial next step.</td></tr>
         <tr><td>Fulfillment QA: page limits, format rules, section completeness</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span></td><td>Rule-checkable against the solicitation's own instructions. Catches the errors that get a compliant proposal thrown out on a technicality.</td><td>Signs the compliance certification. Owns the submission.</td></tr>
+        <tr><td>Weekly client sync package</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span></td><td>Assembles the recurring client-facing status artifact from the work record: sections complete, open items, what BCS needs from the client, next milestones. Directly serves the weekly sync cadence.</td><td>Runs the call. Owns anything that is a commitment or a schedule change.</td></tr>
         <tr><td>CRM hygiene: dedupe, field completion, next-action enforcement</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span><span class="tag cm">CMMC</span></td><td>Scoped writes to approved fields, fully reversible, and the manual already requires a daily completeness control.</td><td>Reviews a sample. Resolves genuine conflicts.</td></tr>
         <tr><td>CMMC education content, FAQ and misconception library</td><td><span class="tag cm">CMMC</span></td><td>Built entirely on public NIST SP 800-171 control text and published CMMC program rules. No client data involved at any point.</td><td>Technical accuracy review before publication. This one is non-negotiable — wrong compliance guidance is a credibility loss.</td></tr>
         <tr><td>Intake checklist generation and status chasing</td><td><span class="tag pa">PA</span><span class="tag cm">CMMC</span></td><td>Tracks that an item was requested, received or is pending — status metadata only, never contents. The manual's existing status-without-substance pattern.</td><td>Opens and evaluates anything a client submits.</td></tr>
@@ -396,7 +459,7 @@ a{color:var(--brass)}
       <caption><span class="ct">Tier 2 &mdash; Agent assists, a named human authors and owns</span><span class="cr">Judgment-bearing or CLASS-B &middot; agent contributes structure and first draft, never the decision</span></caption>
       <thead><tr><th style="width:24%">Task</th><th style="width:9%">Phase</th><th style="width:34%">What the agent does</th><th style="width:33%">Where the line sits</th></tr></thead>
       <tbody>
-        <tr><td>Proposal narrative drafting</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span></td><td>Assembles from approved boilerplate and client-released past performance against the compliance matrix; flags every requirement with no source material.</td><td>Technical approach and win themes are human-authored. Agent output is raw material, not a submission draft.</td></tr>
+        <tr><td>Proposal narrative drafting</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span></td><td>Assembles from approved boilerplate and client-released past performance against the compliance matrix; flags every requirement with no source material. The single biggest lever on the 80&ndash;90% draft target, and the reason the boilerplate and past-performance libraries are critical assets rather than nice-to-haves.</td><td>Technical approach and win themes are human-authored. Agent output is raw material, never a submission draft. Past-performance material stays <span class="mono">CLASS-R</span> until the client clears it.</td></tr>
         <tr><td>Past-performance library curation</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span></td><td>Maintains a structured, reusable library of client-approved narratives tagged by agency, NAICS, vehicle and scope.</td><td>Each entry needs written client release before it enters the library. Nothing enters unreleased.</td></tr>
         <tr><td>Pricing narrative structure</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span></td><td>Produces the basis-of-estimate skeleton and the required narrative sections.</td><td>No numbers. Not rates, not hours, not totals. The manual's "human only" on pricing stays absolute.</td></tr>
         <tr><td>Teaming and capture target shortlists</td><td><span class="tag cg">CG</span></td><td>Researches capability fit, set-aside status, vehicle access and past teaming from public records; produces a ranked shortlist with evidence.</td><td>Every approach to a prime or partner is human-initiated. Relationships are not a pipeline.</td></tr>
@@ -510,14 +573,16 @@ a{color:var(--brass)}
             <li>Step Y separates shared from domain-specific components near the end of the build. That is too late — by then the knowledge is entangled.</li>
             <li>Externalize domain knowledge from the first charter: rubrics, claims, templates and source lists as data files, not as prose inside agent instructions.</li>
             <li>Then replication is a configuration swap rather than a rewrite, and phase two costs days instead of weeks.</li>
+            <li>With a separate BCS-CG team, the domain knowledge work &mdash; rubrics, ICP, claims register, source lists, past-performance releases &mdash; can start in week one. It needs no platform capacity, so it does not compete with ProposalApp for the one shared role.</li>
           </ul>
         </div>
       </div>
     </div>
 
     <div class="phase">
-      <div class="phase-hd"><span class="n">PHASE 3</span><h3>CMMC CISO &mdash; GovCon implementation</h3></div>
-      <p>The manual is right to activate this last, and right that the agent surface is narrow. Worth being explicit about why: nearly all CMMC <em>delivery</em> work is Tier 3 by construction. Scoping, SSP and POA&amp;M authorship, evidence handling and assessment conclusions are CUI-bearing and professionally attributable. What remains for agents is the demand-generation and administrative layer — which is genuinely valuable and entirely safe, but it is not the delivery work.</p>
+      <div class="phase-hd"><span class="n">PHASE 3</span><h3>CMMC CISO &mdash; advisory, RP/RPO, separate tooling</h3></div>
+      <p>Your answers make this the best-designed of the three programs, and the one whose market changed most. Separate tooling from ProposalApp is exactly right. The RP/RPO positioning carries no independence conflict &mdash; RPOs advise and prepare, they do not assess, so the C3PAO problem simply does not arise. And because a cleanly scoped advisory engagement that never receives CUI generally does not make BCS an external service provider, the Tier&nbsp;3 boundary is what keeps BCS off the assessment path entirely.</p>
+      <p>The agent surface stays narrow, and it is worth being explicit about why: nearly all CMMC <em>delivery</em> is human-only by construction. Scoping, SSP and POA&amp;M authorship, evidence handling and assessment conclusions are CUI-bearing and professionally attributable. What agents get is the demand-generation and administrative layer &mdash; genuinely valuable, entirely safe, and not the delivery work.</p>
       <div class="gapgrid">
         <div>
           <h4>Safe and worth building</h4>
@@ -527,68 +592,112 @@ a{color:var(--brass)}
             <li>Awareness training and role-based enablement material</li>
             <li>Readiness questionnaires and evidence <em>request</em> lists</li>
             <li>Onboarding and intake status tracking, contents never seen</li>
+            <li>SPRS score and annual-affirmation deadline tracking &mdash; dates and status only</li>
           </ul>
         </div>
         <div>
-          <h4>Two structural questions the manual should answer</h4>
+          <h4>The market moved &mdash; reconsider the sequencing</h4>
           <ul>
-            <li><strong>BCS as an external service provider.</strong> If BCS handles client CUI in any capacity, BCS is itself in assessment scope, and every tool in the CUI path inherits that scope. This is the strongest argument for the manual's commercial/controlled split — state it as an architectural boundary with named environments, not as a handling rule.</li>
-            <li><strong>Independence.</strong> If BCS holds or intends to hold an assessor role, providing consulting to an organization it later assesses raises a conflict the manual should address directly. Which role BCS occupies changes what phase three may sell, not just how agents support it.</li>
+            <li>Phase&nbsp;II suspension removed the forcing function BCS was likely counting on: no November deadline, no imminent Level&nbsp;2 third-party assessment requirement.</li>
+            <li>But Phase&nbsp;I is untouched. Self-assessments, SPRS scores and <strong>annual affirmations by a senior official</strong> all continue &mdash; and an affirmation is a personal attestation with False Claims Act exposure behind it.</li>
+            <li>That is advisory demand, not assessment-prep demand. It maps precisely onto fractional CISO and RP services, which is what you chose. The suspension arguably improved your positioning relative to a certification-prep practice.</li>
+            <li>So the case for activating CMMC <em>last</em> is weaker than it was. The confusion itself is the content opportunity, and it has a shelf life &mdash; the reform task force will report inside your build window.</li>
           </ul>
         </div>
       </div>
-      <div class="hardline"><b>Non-negotiable</b>A commercial model processing CUI is a security incident with reporting obligations, not a policy violation to be corrected internally. Write it in those words. It is the one line in the whole manual whose violation could end the practice, and it should read like it.</div>
+      <div class="hardline"><b>Non-negotiable</b>A commercial model processing CUI is a security incident with reporting obligations, not an internal policy slip. Write it in those words. It is the one line whose violation could end the practice &mdash; and, given the ESP scoping above, also the line that keeps BCS out of assessment scope. It should read like both.</div>
     </div>
 
   </div>
 </section>
 
 <section>
-  <div class="sec-head"><span class="sec-num">06</span><h2>Revised sequence</h2></div>
-  <p class="lede">Same content as A–Z, reordered so evidence arrives before investment. Gates are conditions, not dates — a wave does not start because time passed.</p>
+  <div class="sec-head"><span class="sec-num">06</span><h2>Budget</h2></div>
+  <p class="lede">Your current spend, what it does and does not cover, and what the agent workforce actually adds. The headline: the automation costs less than expected, the consolidation saves more than expected, and the real budget risk is neither.</p>
+
+  <div class="tscroll">
+    <table>
+      <caption><span class="ct">Current stack &mdash; &asymp;$630 per month</span><span class="cr">As stated &middot; HubSpot annualized &middot; verify against invoices</span></caption>
+      <thead><tr><th style="width:26%">Tool</th><th style="width:14%">Monthly</th><th style="width:22%">Role</th><th style="width:38%">Assessment</th></tr></thead>
+      <tbody>
+        <tr><td>ChatGPT</td><td class="num">$200</td><td>Human interface</td><td>Keep. Not programmatic access &mdash; see <span class="mono">F-3</span>.</td></tr>
+        <tr><td>Claude Max</td><td class="num">$100</td><td>Human interface</td><td>Keep. Same caveat.</td></tr>
+        <tr><td>Claude Team &times; 3</td><td class="num">&asymp;$90</td><td>Human interface</td><td>Keep &mdash; and this is the plan to grow onto as headcount reaches 6&ndash;9, rather than adding personal seats.</td></tr>
+        <tr><td>Apollo</td><td class="num">$90</td><td>Enrichment</td><td>Keep. Feeds Tier&nbsp;1 research directly.</td></tr>
+        <tr><td>LinkedIn &times; 2</td><td class="num">$68</td><td>Prospecting</td><td>Keep the accounts. Reconsider what runs on them.</td></tr>
+        <tr><td>SalesRobot</td><td class="num">$40</td><td>LinkedIn automation</td><td><strong>Decide deliberately.</strong> Terms-of-service risk to the accounts &mdash; see <span class="mono">F-8</span>.</td></tr>
+        <tr><td>HubSpot (3 seats)</td><td class="num">&asymp;$21</td><td>CRM</td><td>Adequate now. <strong>The real budget risk</strong> &mdash; three programs needing separate pipelines at 6&ndash;9 users is a tier upgrade, and it is a step change, not a drift.</td></tr>
+        <tr><td>Gemini + Perplexity</td><td class="num">&asymp;$20</td><td>Research, personal accounts</td><td><strong>Retire or move to org-managed.</strong> Governance gap &mdash; see <span class="mono">F-9</span>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tscroll">
+    <table>
+      <caption><span class="ct">What the agent workforce adds</span><span class="cr">Estimate at the section 04 volumes &middot; first-party API rates &middot; verify runtime pricing before committing</span></caption>
+      <thead><tr><th style="width:30%">Line</th><th style="width:18%">Monthly</th><th style="width:52%">Basis</th></tr></thead>
+      <tbody>
+        <tr><td>Research and brief generation</td><td class="num">$65&ndash;130</td><td>The dominant cost by far. Multi-turn agentic research accumulates context on every turn; prompt caching cuts it materially. 10 briefs a week.</td></tr>
+        <tr><td>Compliance matrix extraction</td><td class="num">$15&ndash;20</td><td>A large solicitation is a big single input but only one pass. Roughly $2 per RFP at two a week &mdash; the best value in the entire stack.</td></tr>
+        <tr><td>Solicitation and reply monitoring</td><td class="num">$20&ndash;40</td><td>High volume, low judgment. Route to the cheapest capable model; this is where a small model earns its place.</td></tr>
+        <tr><td>Drafting, briefs, content, hygiene</td><td class="num">$30&ndash;60</td><td>Individually negligible &mdash; cents per item. Included for completeness.</td></tr>
+        <tr><td>Hermes + Composio</td><td class="num">verify</td><td>Vendor pricing changes; confirm current terms before procurement, as the manual's own source-references note advises.</td></tr>
+        <tr><td><strong>Incremental total</strong></td><td class="num"><strong>&asymp;$150&ndash;300</strong></td><td>Plus runtime subscriptions. Against ~23&ndash;29 reclaimed hours a week in phase one, the return is not a close call.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>Set the ceiling explicitly, because you still have not.</strong> A defensible number: <strong>$1,000 a month through Wave&nbsp;2</strong> &mdash; current spend, plus API usage, plus the two runtime subscriptions, less roughly $60 from retiring the personal accounts and any duplicate model vendor you drop. Revisit at the Wave&nbsp;3 gate, when HubSpot's tier and seat growth &mdash; not models &mdash; will be what moves the number.</p>
+  <p class="note">Model spend is the line everyone worries about and it is not where the money goes. At your volumes it is roughly a quarter of what you already spend on chat subscriptions. The two costs that will actually grow are seats and CRM tiering, both driven by headcount rather than by automation.</p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">07</span><h2>Revised sequence</h2></div>
+  <p class="lede">Reordered so evidence arrives before investment &mdash; and now parallelized, because three separate teams changed the constraint. The bottleneck is no longer team capacity. It is the one shared <span class="mono">PLATFORM</span> role, and every gate below is written against that.</p>
   <div class="seq">
 
     <div class="step">
       <span class="when">Days 1&ndash;3</span>
       <div>
-        <h3>Thin slice</h3>
-        <p>One task type: account research producing a sourced brief. Spreadsheet as the work record, an existing channel for approvals, no runtime, no OAuth gateway, no charter. Five real target accounts through it. Record actual minutes per brief and every defect. This is also step B's baseline, gathered for free.</p>
+        <h3>Thin slice &mdash; ProposalApp only</h3>
+        <p>One task type: account research producing a sourced brief. Spreadsheet work record, approvals in an existing channel, no runtime, no OAuth gateway, no charter. Five real target accounts. Record actual minutes per brief and every defect &mdash; this is also the manual's step&nbsp;B baseline, gathered for free, and it replaces the estimates in section 04 with facts.</p>
       </div>
     </div>
-    <div class="gate"><span class="when">Gate</span><div>Three of five briefs usable with light edits, and observed time per brief beats the manual baseline. If not, the problem is knowledge and rubric quality — fix that before building anything around it.</div></div>
+    <div class="gate"><span class="when">Gate</span><div>Three of five briefs usable with light edits, and observed time per brief beats the manual baseline. If not, the problem is rubric and knowledge quality &mdash; fix that before building anything around it.</div></div>
 
     <div class="step">
       <span class="when">Weeks 1&ndash;4</span>
       <div>
-        <h3>Wave 1 &mdash; ProposalApp marketing, human-triggered</h3>
-        <p>A–Z steps A, C, D, E, K, N, F and L, in that order: owners, data classification with the three CLASS tiers from F-4, offer, systems of record, knowledge, work schema, charters, skills. Research, outreach drafting, reply triage and demo briefs go live under per-send approval. GitHub from day one. No unattended writes, so no Hermes and no Composio yet. Ten-case eval set per workflow before each goes live.</p>
+        <h3>Wave 1 &mdash; ProposalApp marketing, plus two parallel tracks</h3>
+        <p><strong>ProposalApp team:</strong> A&ndash;Z steps A, C, D, E, K, N, F and L in that order &mdash; owners, the three data classes from <span class="mono">F-4</span>, offer, systems of record, knowledge, work schema, charters, skills. Research, outreach drafting, reply triage and demo briefs go live under per-send approval. Ten-case eval set per workflow before each goes live. GitHub from day one; no unattended writes yet, so no Hermes or Composio.</p>
+        <p><strong>In parallel, needing no platform capacity:</strong> the BCS-CG team builds domain knowledge &mdash; rubrics, ICP, claims register, source lists, past-performance releases. The CMMC team builds the volatile-claims register from <span class="mono">F-10</span> and drafts education content against verified primary sources. Neither competes with ProposalApp for <span class="mono">PLATFORM</span>.</p>
       </div>
     </div>
-    <div class="gate"><span class="when">Gate</span><div>Twenty scored accounts, five approved outreach records, zero sensitive-information events, and net hours reclaimed measured and positive.</div></div>
+    <div class="gate"><span class="when">Gate</span><div>Twenty scored accounts, five approved outreach records, zero sensitive-information events, and net reclaimed hours measured and positive. External-personnel access policy written and applied before any external touches client material.</div></div>
 
     <div class="step">
       <span class="when">Weeks 5&ndash;10</span>
       <div>
         <h3>Wave 2 &mdash; Demo, fulfillment, and the runtime</h3>
-        <p>Write the demo and fulfillment procedures that F-4 identified as missing. Build the compliance matrix skill as domain-independent from the outset. Now add Hermes and Composio, because scheduled unattended writes are finally the actual requirement. Watchdog as a single capped daily digest. First template graduations under the F-5 counter. Emergency stop defined and tested.</p>
+        <p>Write the demo and fulfillment procedures that <span class="mono">F-4</span> identified as missing &mdash; the highest-value work in the whole plan. Build the compliance-matrix skill domain-independent from the first line, because BCS-CG inherits it unchanged. Now add Hermes and Composio, since scheduled unattended writes are finally the actual requirement. Watchdog as a single capped daily digest. First template graduations under the <span class="mono">F-5</span> counter. Emergency stop defined and tested.</p>
       </div>
     </div>
-    <div class="gate"><span class="when">Gate</span><div>Two engagements fulfilled with agent-assisted production and no compliance defects. Defect rate declining for three consecutive weeks. Emergency stop tested end to end.</div></div>
+    <div class="gate"><span class="when">Gate</span><div>Two engagements fulfilled with agent-assisted production and no compliance defects. Defect rate declining three consecutive weeks. Emergency stop tested end to end. Every fulfillment task has a documented manual fallback.</div></div>
 
     <div class="step">
-      <span class="when">Weeks 11&ndash;16</span>
+      <span class="when">Weeks 8&ndash;14</span>
       <div>
         <h3>Wave 3 &mdash; BCS-CG activation</h3>
-        <p>Swap domain knowledge rather than rebuilding. Add solicitation watch, award-history research and teaming shortlists. Compliance matrix carries over unchanged if Wave 2 built it domain-independent. Second named owner joins, or Wave 3 waits.</p>
+        <p>Can start before Wave 2 closes, since the team is distinct &mdash; the constraint is <span class="mono">PLATFORM</span> having closed ProposalApp's defect backlog, not ProposalApp being finished. Swap domain knowledge rather than rebuilding. Add solicitation watch, award-history research and teaming shortlists. The compliance matrix carries over unchanged if Wave 2 built it properly.</p>
       </div>
     </div>
-    <div class="gate"><span class="when">Overlap rule</span><div>A new domain activates only when the prior domain has met its defect-rate and human-review-time targets for three consecutive weeks, <em>or</em> a named additional owner takes it. Sales pressure will push against this; the rule exists because two or three people cannot supervise three domains through their first defects at once.</div></div>
+    <div class="gate"><span class="when">Revised overlap rule</span><div>The original rule waited on the prior program's team. With distinct teams that is the wrong constraint: a new program activates when <span class="mono">PLATFORM</span> has closed the prior program's open defects, not when the prior team is free. Domain knowledge work never waits &mdash; only agent activation does.</div></div>
 
     <div class="step">
-      <span class="when">Week 17+</span>
+      <span class="when">Weeks 8&ndash;16</span>
       <div>
-        <h3>Wave 4 &mdash; CMMC Growth, marketing layer only</h3>
-        <p>Education content, prospecting, qualification, scheduling and intake status. Delivery work stays in the controlled environment with no agent involvement at any depth. Resolve the external-service-provider and independence questions from section 05 before selling, not after.</p>
+        <h3>Wave 4 &mdash; CMMC Growth, and worth pulling forward</h3>
+        <p>Education content, prospecting, qualification, scheduling and intake status. Delivery stays human-only at every depth. <strong>The case for going last is weaker than it was:</strong> Phase&nbsp;I obligations are untouched and the advisory demand behind them maps onto RP and fractional-CISO work precisely, while the market is confused about what the July suspension did and did not change. That confusion is a content opportunity with a shelf life. The content track can run from week one at negligible platform cost; consider activating outreach as soon as the volatile-claims register is in place.</p>
       </div>
     </div>
 
@@ -596,21 +705,33 @@ a{color:var(--brass)}
 </section>
 
 <section>
-  <div class="sec-head"><span class="sec-num">07</span><h2>Before you finalize</h2></div>
-  <p class="lede">Five answers change the shape of the manual. The first two change it materially.</p>
+  <div class="sec-head"><span class="sec-num">08</span><h2>What to decide next</h2></div>
+  <p class="lede">The five blocking questions are answered. These are the decisions those answers created &mdash; smaller, but each one gates something.</p>
   <ol class="qlist">
-    <li><div><b>Are the two-to-three co-workers per project the same people across all three, or distinct?</b><span>If the same, the overlap rule in section 06 is the most important line in the revision and the phase timeline stretches considerably. If distinct, the governance model needs per-domain owners and the role collapse in F-1 changes shape.</span></div></li>
-    <li><div><b>Does ProposalApp white-glove mean BCS staff produce proposal content for clients?</b><span>This determines whether CLASS-B exists, whether consent belongs in the engagement letter, and whether fulfillment is delegable at all. Everything in section 05 phase one depends on it.</span></div></li>
-    <li><div><b>Does ProposalApp the product store client proposal data?</b><span>If so there is a second, separate question — product security posture and what BCS commits to in its own terms — which is outside this manual's scope but should not be discovered later.</span></div></li>
-    <li><div><b>Which CMMC role does BCS hold or intend to hold?</b><span>Consultancy, registered provider, or assessor. It changes the independence constraints on phase three and therefore what the CISO practice can sell to whom.</span></div></li>
-    <li><div><b>What is the actual monthly ceiling for tools and model usage combined?</b><span>F-3 recommends deferring two systems and three models. That recommendation is only correct against a real number, and the manual currently has none.</span></div></li>
+    <li><div><b>Are the LinkedIn accounts disposable?</b><span>This is the only genuinely uncomfortable finding in the review and it is already running. If the accounts and their connection graphs matter to a relationship-led practice, move to agent-drafted and human-sent; you keep nearly all the time saving, since drafting is where the hours are. Either way, make it a recorded decision rather than an inherited default.</span></div></li>
+    <li><div><b>Who is the single <span class="mono">PLATFORM</span> owner, and do they have capacity for three programs?</b><span>Every gate in section 07 depends on this one role. Triplicating it causes configuration drift across programs; under-resourcing it makes it the bottleneck for all three. If no one can hold it across three programs, that is the real argument for sequencing rather than parallelizing.</span></div></li>
+    <li><div><b>Should CMMC move ahead of BCS-CG?</b><span>The suspension improved the fit between the current market and the advisory positioning you chose. The content track costs almost nothing to start and the window is open now. This is a go-to-market call, not an architecture one &mdash; but the manual's sequencing assumes an answer it no longer has evidence for.</span></div></li>
+    <li><div><b>What is the standing FCI determination process per engagement?</b><span>Pre-award proposal content is largely not FCI, but past-performance and incumbent recompete material can be. Ask the client in writing at kickoff, default unanswered material to <span class="mono">CLASS-R</span>, and record the determination in the work record. Cheap to do at kickoff, expensive to reconstruct later.</span></div></li>
+    <li><div><b>Which model vendors survive consolidation?</b><span>Five vendors today, two of them personal accounts. The manual's own independent-review rule justifies exactly two for agent work. Human seats are a separate question and preferences are legitimate &mdash; but the personal accounts should go regardless, on governance grounds rather than cost.</span></div></li>
   </ol>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">&mdash;</span><h2>Sources for the compliance and program claims</h2></div>
+  <p class="lede">The regulatory statements in this review were verified against current sources rather than recalled, because several of them changed recently and one changed after the manual was drafted. Verify again before publishing anything client-facing &mdash; that is the point of <span class="mono">F-10</span>.</p>
+  <ul>
+    <li><strong>CMMC Phase&nbsp;II suspension, 13 July 2026, and the reform task force</strong> &mdash; <a href="https://business.defense.gov/Engage/News/Article/4542563/forging-the-arsenal-of-freedom-department-of-war-suspends-cmmc-phase-ii-require/">Office of Industrial Base Growth announcement</a>; analyses from <a href="https://www.hklaw.com/en/insights/publications/2026/07/dow-suspends-cmmc-phase-ii-requirements">Holland &amp; Knight</a>, <a href="https://www.lw.com/en/insights/what-defense-contractors-should-know-about-dod-suspension-of-cmmc-phase-2">Latham &amp; Watkins</a>, <a href="https://www.gtlaw.com/en/insights/2026/7/dod-suspends-cmmc-deadlines-and-seeks-to-reassess-requirements">Greenberg Traurig</a> and <a href="https://www.wiley.law/alert-DOD-Pauses-CMMC-2-0-Implementation-A-Big-Deal-with-Little-Immediate-Impact">Wiley</a>; reporting from <a href="https://federalnewsnetwork.com/cybersecurity/2026/07/pentagon-suspends-cmmc-phase-two-requirements-launches-review-of-program/">Federal News Network</a>.</li>
+    <li><strong>Phase&nbsp;I obligations continuing unchanged</strong> &mdash; self-assessments, DFARS 252.204-7012, NIST SP 800-171, SPRS posting and annual affirmations: the announcement above, plus <a href="https://alluvionic.com/cmmc-phase-ii-suspension-faqs/">practitioner FAQs</a>.</li>
+    <li><strong>External service provider scope, and that clean advisory relationships generally fall outside it</strong> &mdash; <a href="https://112cyber.com/blog/a-guide-to-external-service-providers-esp-and-cmmc-certifications/">ESP and CMMC certification guide</a>; <a href="https://gsconsultingllc.com/insights/cmmc-external-service-providers">ESP scope and evidence</a>.</li>
+    <li><strong>FCI definition &mdash; information provided by or generated for the Government under a contract</strong>, which is what puts most pre-award proposal work outside it &mdash; <a href="https://www.acquisition.gov/far/52.204-21">FAR 52.204-21</a>.</li>
+    <li><strong>Model pricing used in the section 06 estimate</strong> &mdash; first-party API rates as published; confirm current rates and Hermes/Composio terms before procurement.</li>
+  </ul>
 </section>
 
 <footer>
   <span>Review of BCS AI Workforce Implementation Manual v1.0</span>
   <span>8 September 2026</span>
-  <span>Findings F-1 &ndash; F-8 &middot; Delegation tiers 1 &ndash; 3</span>
+  <span>Revision 2 &middot; Findings F-1 &ndash; F-10 &middot; Delegation tiers 1 &ndash; 3</span>
 </footer>
 
 </div>
