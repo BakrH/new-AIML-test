@@ -1,0 +1,616 @@
+<title>BCS AI Workforce Review</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#eceee9;
+  --surface:#fbfbf8;
+  --surface-2:#f3f4f0;
+  --ink:#191f2b;
+  --ink-2:#3c4655;
+  --ink-3:#6a7484;
+  --rule:#d3d6cf;
+  --rule-hard:#b4b9b0;
+  --brass:#8a6a15;
+  --brass-soft:#f0e7cd;
+  --brick:#98342a;
+  --brick-soft:#f4e1dd;
+  --measure:68ch;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#14171c;
+    --surface:#1b1f26;
+    --surface-2:#22262e;
+    --ink:#e8eae4;
+    --ink-2:#b9bfb8;
+    --ink-3:#8b9391;
+    --rule:#2e343d;
+    --rule-hard:#454d58;
+    --brass:#cfa945;
+    --brass-soft:#332b16;
+    --brick:#d97b6d;
+    --brick-soft:#37211e;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#14171c;
+  --surface:#1b1f26;
+  --surface-2:#22262e;
+  --ink:#e8eae4;
+  --ink-2:#b9bfb8;
+  --ink-3:#8b9391;
+  --rule:#2e343d;
+  --rule-hard:#454d58;
+  --brass:#cfa945;
+  --brass-soft:#332b16;
+  --brick:#d97b6d;
+  --brick-soft:#37211e;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:16.5px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px 96px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* ---- masthead ---- */
+header.mast{
+  border-bottom:2px solid var(--ink);
+  padding:44px 0 22px;
+  margin-bottom:40px;
+}
+.kicker{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brass);font-weight:600;
+}
+h1{
+  font-family:"Zilla Slab",Georgia,serif;
+  font-weight:700;font-size:clamp(2.1rem,5.4vw,3.3rem);
+  line-height:1.04;margin:.28em 0 .3em;letter-spacing:-.012em;
+  text-wrap:balance;
+}
+.standfirst{max-width:var(--measure);font-size:1.09rem;color:var(--ink-2);margin:0}
+.mast-meta{
+  display:flex;flex-wrap:wrap;gap:6px 26px;margin-top:26px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;
+  letter-spacing:.05em;color:var(--ink-3);text-transform:uppercase;
+}
+.mast-meta b{color:var(--ink-2);font-weight:500}
+
+/* ---- section scaffolding ---- */
+section{margin:0 0 62px}
+.sec-head{
+  display:flex;gap:16px;align-items:baseline;
+  border-top:1px solid var(--rule-hard);padding-top:14px;margin-bottom:22px;
+}
+.sec-num{
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:600;
+  letter-spacing:.14em;color:var(--brass);padding-top:.5em;white-space:nowrap;
+}
+h2{
+  font-family:"Zilla Slab",Georgia,serif;font-weight:600;
+  font-size:clamp(1.42rem,3vw,1.86rem);line-height:1.16;margin:0;
+  letter-spacing:-.008em;text-wrap:balance;
+}
+h3{
+  font-family:"Zilla Slab",Georgia,serif;font-weight:600;font-size:1.12rem;
+  margin:0 0 .3em;line-height:1.28;
+}
+p{max-width:var(--measure);margin:0 0 1em}
+.lede{font-size:1.04rem;color:var(--ink-2)}
+ul{max-width:var(--measure);padding-left:1.15em;margin:0 0 1em}
+li{margin-bottom:.42em}
+strong{font-weight:600}
+em.q{font-style:italic;color:var(--ink-2)}
+
+/* ---- verdict ---- */
+.verdict{
+  background:var(--surface);border:1px solid var(--rule);
+  border-left:3px solid var(--brass);
+  padding:26px 28px;margin-bottom:56px;
+}
+.verdict p:last-child{margin-bottom:0}
+.verdict .kicker{display:block;margin-bottom:.6em}
+
+/* ---- scorecard ---- */
+.score{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(216px,1fr));
+  gap:1px;background:var(--rule);border:1px solid var(--rule);margin:26px 0 0;
+}
+.score div{background:var(--surface);padding:15px 17px}
+.score dt{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:7px;
+}
+.score dd{margin:0;font-family:"Zilla Slab",serif;font-size:1.02rem;font-weight:600;line-height:1.3}
+.score .sub{font-family:"Source Sans 3",sans-serif;font-size:.86rem;font-weight:400;color:var(--ink-3);display:block;margin-top:3px;line-height:1.4}
+
+/* ---- findings ---- */
+.findings{display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.finding{background:var(--surface);padding:22px 24px;display:grid;grid-template-columns:74px 1fr;gap:0 20px}
+.fid{
+  font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;
+  color:var(--brick);letter-spacing:.06em;padding-top:.2em;
+}
+.finding p{margin:.5em 0 0;font-size:.98rem;max-width:64ch}
+.fix{
+  margin-top:.85em;padding-top:.75em;border-top:1px dotted var(--rule-hard);
+  font-size:.95rem;max-width:64ch;color:var(--ink-2);
+}
+.fix b{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--brass);display:block;margin-bottom:.2em;font-weight:600;
+}
+
+/* ---- tables ---- */
+.tscroll{overflow-x:auto;border:1px solid var(--rule);background:var(--surface);margin:0 0 14px}
+table{border-collapse:collapse;width:100%;min-width:660px;font-size:.93rem}
+caption{
+  text-align:left;padding:15px 18px 13px;background:var(--surface-2);
+  border-bottom:1px solid var(--rule-hard);
+}
+caption .ct{font-family:"Zilla Slab",serif;font-size:1.06rem;font-weight:600;color:var(--ink);display:block}
+caption .cr{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3);
+  letter-spacing:.03em;display:block;margin-top:4px;
+}
+th{
+  text-align:left;font-family:"IBM Plex Mono",monospace;font-weight:600;
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+  padding:11px 14px;border-bottom:1px solid var(--rule-hard);vertical-align:bottom;
+}
+td{padding:11px 14px;border-bottom:1px solid var(--rule);vertical-align:top;color:var(--ink-2)}
+td:first-child{color:var(--ink);font-weight:600}
+tr:last-child td{border-bottom:none}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap;font-family:"IBM Plex Mono",monospace;color:var(--ink)}
+
+.tag{
+  display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;
+  font-weight:600;letter-spacing:.07em;padding:2px 6px;border:1px solid var(--rule-hard);
+  color:var(--ink-3);white-space:nowrap;margin:0 3px 3px 0;
+}
+.tag.pa{border-color:var(--brass);color:var(--brass);background:var(--brass-soft)}
+.tag.cg{border-color:var(--rule-hard);color:var(--ink-2);background:var(--surface-2)}
+.tag.cm{border-color:var(--brick);color:var(--brick);background:var(--brick-soft)}
+
+/* bar cell */
+.barcell{min-width:132px}
+.bar{height:8px;background:var(--brass);display:block;margin-top:6px}
+.bar.dim{background:var(--rule-hard)}
+
+/* ---- phase blocks ---- */
+.phases{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.phase{background:var(--surface);padding:24px 26px}
+.phase-hd{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;margin-bottom:.7em}
+.phase-hd .n{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.13em;color:var(--brass);font-weight:600}
+.phase h3{margin:0}
+.gapgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px 26px;margin-top:16px}
+.gapgrid h4{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);margin:0 0 .45em;font-weight:600;
+}
+.gapgrid ul{padding-left:1.05em;margin:0;font-size:.92rem;max-width:none}
+.gapgrid li{margin-bottom:.3em;color:var(--ink-2)}
+.hardline{
+  margin-top:18px;background:var(--brick-soft);border-left:3px solid var(--brick);
+  padding:14px 16px;font-size:.93rem;color:var(--ink-2);max-width:none;
+}
+.hardline b{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--brick);display:block;margin-bottom:.25em;font-weight:600;
+}
+
+/* ---- sequence ---- */
+.seq{display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.step{background:var(--surface);padding:20px 24px;display:grid;grid-template-columns:126px 1fr;gap:0 22px}
+.step .when{font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:600;letter-spacing:.05em;color:var(--brass);padding-top:.25em}
+.step p{margin:.35em 0 0;font-size:.95rem;max-width:64ch}
+.gate{
+  background:var(--surface-2);padding:12px 24px;display:grid;grid-template-columns:126px 1fr;gap:0 22px;
+  font-size:.9rem;color:var(--ink-2);
+}
+.gate .when{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+
+/* ---- questions ---- */
+.qlist{counter-reset:q;list-style:none;padding:0;max-width:none;display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.qlist li{background:var(--surface);padding:18px 22px;margin:0;display:grid;grid-template-columns:36px 1fr;gap:0 16px}
+.qlist li::before{
+  counter-increment:q;content:"Q" counter(q);
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:600;color:var(--brass);padding-top:.25em;
+}
+.qlist b{display:block;font-family:"Zilla Slab",serif;font-size:1.03rem;font-weight:600;margin-bottom:.2em}
+.qlist span{font-size:.94rem;color:var(--ink-2)}
+
+footer{border-top:2px solid var(--ink);margin-top:64px;padding-top:18px;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.05em;color:var(--ink-3);
+  display:flex;flex-wrap:wrap;gap:6px 28px;text-transform:uppercase}
+.note{font-size:.88rem;color:var(--ink-3);max-width:var(--measure);font-style:italic}
+a{color:var(--brass)}
+:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+@media (max-width:640px){
+  .finding,.step,.gate{grid-template-columns:1fr;gap:8px}
+  .qlist li{grid-template-columns:1fr;gap:4px}
+  .wrap{padding:0 18px 72px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <span class="kicker">Implementation review &middot; Manual v1.0</span>
+  <h1>BCS AI Workforce Review</h1>
+  <p class="standfirst">An assessment of the draft operating manual against the actual plan — ProposalApp marketing through fulfillment first, then BCS-CG GovCon, then CMMC CISO delivery — with a task-by-task judgment on what a two-to-three-person team should hand to agents and what it must keep.</p>
+  <div class="mast-meta">
+    <span>Reviewed <b>8 Sep 2026</b></span>
+    <span>Source <b>BCS_AI_Workforce_Implementation_Manual_1.docx</b></span>
+    <span>Staffing assumed <b>2–3 humans + agents per project</b></span>
+  </div>
+</header>
+
+<div class="verdict">
+  <span class="kicker">Verdict</span>
+  <p>The manual is <strong>architecturally sound and operationally too heavy for the team that has to run it.</strong> Its core design decisions are the right ones and unusually well chosen: a hard CUI/FCI boundary declared before anything else, a shared work record with structured handoffs instead of passing chat history between models, and an approval matrix that separates drafting from sending from committing. Those three choices are what most AI-workforce plans get wrong, and they are the reason this plan is worth building on rather than rewriting.</p>
+  <p>What it does not survive is its own headcount. The manual names <strong>nine distinct human roles and twenty-six sequential build gates</strong>, then hands them to two or three people who also have to sell, deliver, and keep the lights on. Roughly forty to sixty hours of governance labor lands before a single draft is produced, separation of duties collapses the moment one person wears three hats, and the thirteen-system tool stack carries recurring cost against pilot volumes too small to justify it.</p>
+  <p>Two substantive content gaps matter more than any of that. <strong>The demo and fulfillment stages of ProposalApp — the user's own stated phase-one scope — are absent from the manual entirely</strong>, and fulfillment is where the delegation return actually lives. Fixing that surfaces a contradiction the draft never resolves: agents are forbidden from touching sensitive data, yet white-glove proposal production is the deliverable. That needs a tiered data model, not a blanket prohibition.</p>
+  <div class="score">
+    <div><dt>Data boundary &amp; prohibited work</dt><dd>Keep as written<span class="sub">Strongest section. The existential risk for a compliance firm, handled first.</span></dd></div>
+    <div><dt>Work record &amp; handoff</dt><dd>Keep as written<span class="sub">Correct architecture. Add fulfillment-specific fields.</span></dd></div>
+    <div><dt>Governance &amp; role model</dt><dd>Compress<span class="sub">Nine roles into three hats with a non-self-approvable list.</span></dd></div>
+    <div><dt>Build sequence (A–Z)</dt><dd>Re-order<span class="sub">Sound content, wrong order. Value before ceremony.</span></dd></div>
+    <div><dt>Tool stack &amp; model routing</dt><dd>Defer<span class="sub">Two of thirteen systems are not needed until unattended writes exist.</span></dd></div>
+    <div><dt>Demo, fulfillment, delivery</dt><dd>Missing<span class="sub">Phase-one scope with no procedure, and the largest hour pool.</span></dd></div>
+    <div><dt>Economic model</dt><dd>Missing<span class="sub">No baseline hours, no cost cap, no break-even.</span></dd></div>
+    <div><dt>Delegation analysis</dt><dd>Missing<span class="sub">Agents are described by role, never by task value. Supplied below.</span></dd></div>
+  </div>
+</div>
+
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>What holds up under pressure</h2></div>
+  <p class="lede">Five decisions in the draft should not be touched during revision. They are load-bearing.</p>
+  <ul>
+    <li><strong>The prohibition list is specific enough to be enforceable.</strong> Naming CUI, FCI, export-controlled data, credentials, network diagrams, vulnerability findings, SSPs and POA&amp;Ms individually — rather than saying "sensitive information" — is what makes the rule testable. An agent can be evaluated against it.</li>
+    <li><strong>Business state lives in systems of record, not in model memory.</strong> "Models do not exchange private chat histories" is the single most important sentence in the manual. It is what lets you swap a model, resume after a failure, and audit a decision six months later.</li>
+    <li><strong>Autonomy is separated into four distinct authorities</strong> — draft, update internal records, send externally, approve commitments. Most plans conflate the last two and discover the problem when an agent quotes a price.</li>
+    <li><strong>Every A–Z step carries completion evidence.</strong> Not "configure Composio" but "connection inventory and successful access tests." That converts a plan into something a sponsor can actually sign off.</li>
+    <li><strong>"Human review time" is a tracked measure with the rule "automation must reduce total effort."</strong> This is the metric that catches the failure mode where agents produce more work than they remove. Keep it, and make it a gate rather than a report.</li>
+  </ul>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>What breaks at three people</h2></div>
+  <p class="lede">Eight findings, each with the smallest change that resolves it. Identifiers are for reference, not sequence — F-4 is the most consequential.</p>
+  <div class="findings">
+
+    <div class="finding">
+      <span class="fid">F-1</span>
+      <div>
+        <h3>Nine roles, three people, no separation of duties</h3>
+        <p>The manual assigns work to an executive sponsor, AI operations administrator, revenue operations owner, security reviewer, ProposalApp sales owner, knowledge owner, technical owner, operations owner, and system administrator. At two or three co-workers, one person is simultaneously the agent owner requesting a change, the technical owner making it, and the security reviewer approving it. The approval ceremony still runs; it just stops meaning anything.</p>
+        <div class="fix"><b>Fix</b>Collapse to three hats — <span class="mono">SPONSOR</span> (offer, pricing, autonomy, production authorization), <span class="mono">OPERATOR</span> (agent config, knowledge, runtime, evals), <span class="mono">REVENUE</span> (pipeline, sends, relationship ownership) — and publish a short list of actions that may never be self-approved regardless of hats: expanding an agent's write scope, expanding autonomy, sending a first-touch message, and resuming after a sensitive-information event. Those four need a second named human, and if only two people exist, the sponsor is always the second.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <span class="fid">F-2</span>
+      <div>
+        <h3>Twenty-six gates before the first unit of value</h3>
+        <p>The A–Z sequence and the ten-day plan put the first approved outreach at day ten, and the first agent-produced deliverable of any kind at day seven. Everything before that is charter writing, namespace creation, OAuth configuration, and runtime deployment. For a small team, that is a large unpaid bet placed before anyone has seen whether an agent-written account brief is actually good enough to use.</p>
+        <div class="fix"><b>Fix</b>Insert a seventy-two-hour thin slice ahead of step A: one specialist, one task type (account research producing a sourced brief), the work record as a spreadsheet, approvals as a message in an existing channel, no runtime, no Composio, no charter. Run five real target accounts through it. Then build the control plane around what actually worked — and around the defects you found, which you cannot guess at in advance.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <span class="fid">F-3</span>
+      <div>
+        <h3>Thirteen systems and seven model routes at pilot volume</h3>
+        <p>The stack is ChatGPT, Codex, Claude, Gemini, Grok, Hermes, Composio, Buzz, HubSpot, ClickUp, Drive, GitHub and Apollo. Most carry per-seat or per-workspace cost. The routing table then assigns primary and fallback models across seven work types — but the pilot's stated volume is twenty scored accounts and five outreach records, which is far too little signal to distinguish model quality on any of those routes. You would be paying for optionality you cannot measure.</p>
+        <div class="fix"><b>Fix</b>One primary model family plus one fallback for the whole pilot; drop Gemini and Grok from the table until a specific measured shortfall justifies adding them. Hermes and Composio solve unattended scheduling and scoped OAuth for writes — real problems, but problems you do not have until an agent writes to a live system without a human present. Defer both to Wave&nbsp;2 and run human-triggered sessions until then. Keep GitHub from day one; versioned configuration is cheap and the thing you will most regret skipping.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <span class="fid">F-4</span>
+      <div>
+        <h3>Demo and fulfillment are absent — and they conflict with the data rule</h3>
+        <p>The stated phase-one scope is <em class="q">marketing &amp; demo to fulfillment</em>. The manual covers research, outreach, reply handling, meeting prep and onboarding status, then stops. There is no procedure for demo delivery, demo-to-proposal conversion, proposal production, compliance review of a delivered proposal, format and page-limit QA, or fulfillment capacity planning. That is the majority of the billable work and the largest single pool of delegable hours.</p>
+        <p>Writing it exposes the contradiction. The manual forbids agents from touching contract-sensitive material; white-glove proposal production for GovCon clients means working inside exactly that material — draft technical approaches, past performance narratives, pricing structure, and in many cases federal contract information. A blanket prohibition would exclude agents from the work you are selling.</p>
+        <div class="fix"><b>Fix</b>Replace the binary with three data classes and bind each to an environment. <span class="mono">CLASS-P</span> — published solicitation text, agency budget documents, award history, client-approved boilerplate and capability statements: fully agent-accessible. <span class="mono">CLASS-B</span> — client business information that is neither FCI nor CUI, released to BCS under NDA: agent-accessible only in the named commercial workspace, with per-engagement client consent recorded in the work record. <span class="mono">CLASS-R</span> — FCI, CUI, pricing, reps and certifications, and anything a client has marked restricted: human-only, handled in the controlled environment, never entering a prompt. Then state the fulfillment tasks against those classes rather than against agent roles, and get client consent for CLASS-B in the engagement letter, not by exception later.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <span class="fid">F-5</span>
+      <div>
+        <h3>The approval funnel has no exit</h3>
+        <p>Every first-touch message and every substantive reply requires human approval. At five sends a week that is fine. At fifty it consumes an owner. The manual anticipates this with <em class="q">campaign-level approval possible</em> in the later-state column, but sets no criterion for getting there, so in practice the pilot posture becomes permanent and the team concludes agents did not save time.</p>
+        <div class="fix"><b>Fix</b>Make graduation numeric and per-template rather than global. A message template moves from per-send approval to template-level approval after twenty consecutive approvals within its segment with no substantive rewrite; one factual defect, wrong-contact send, or duplicate resets the counter to zero and returns that template to per-send review. Same shape for content publication and internal CRM writes. Record the counter in the work ledger so it is a fact, not a feeling.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <span class="fid">F-6</span>
+      <div>
+        <h3>No economic model, so no way to know if it worked</h3>
+        <p>The measurement table lists <em class="q">cost per qualified meeting — compare with prior acquisition methods</em>, but no prior number is captured anywhere, and step B's baseline asks for <em class="q">delays, handoffs, and manual effort</em> without requiring a unit. Nothing in the manual states a monthly spend cap, a target hours-reclaimed figure, or a break-even. The pilot can therefore neither pass nor fail.</p>
+        <div class="fix"><b>Fix</b>Make step B produce three numbers per workflow stage: minutes per unit, units per week, and who does it today. Set the pilot's success threshold before starting — a specific figure for net weekly hours reclaimed and a hard monthly ceiling on tools and model usage combined. Section 04 below gives a first-pass estimate to work against; replace every row of it with observed times as step B completes.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <span class="fid">F-7</span>
+      <div>
+        <h3>Evaluation sets and emergency stop are required but undefined</h3>
+        <p>Quality controls call for <em class="q">a small evaluation set</em> with results meeting <em class="q">the approved threshold</em> — no size, no threshold, no owner, no location. Step P tests an <em class="q">emergency stop</em> that is never defined anywhere: not who can trigger it, not what it does, not how long recovery takes. Both are the kind of requirement that quietly does not happen on a three-person team, and both are what you reach for on your worst day.</p>
+        <div class="fix"><b>Fix</b>Fix the eval set at ten cases per workflow, stored beside the charter in GitHub, covering the nine conditions the manual already lists, with a stated pass threshold and a single command to run them. Define emergency stop concretely: any of the three hats can invoke it, it revokes the connected-account tokens and disables all schedules, it is one documented command, and restoring service requires the sponsor plus a written cause. Test it in step P and again quarterly with the restore test.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <span class="fid">F-8</span>
+      <div>
+        <h3>Deadline-bound work has no manual fallback, and outreach has no consent policy</h3>
+        <p>Marketing has soft deadlines; fulfillment has hard ones. A proposal due date does not move because a runtime is down or a model is unavailable. The failure table handles model and tool failures generically but never states the rule that matters: no client deadline may depend on agent availability. Separately, the manual references <em class="q">consent status</em> and a <em class="q">suppression flag</em> without any underlying policy — nothing on CAN-SPAM requirements, sending-domain reputation, or the fact that automated LinkedIn actions violate the platform's terms and routinely cost accounts, which for a relationship-led GovCon practice is a real asset to lose.</p>
+        <div class="fix"><b>Fix</b>Add one sentence to the failure table: every fulfillment task an agent performs has a documented manual path, and the human owner confirms the manual path is viable before the deadline is committed. Add a short outreach compliance policy covering identification and opt-out in every message, a single authoritative suppression list checked pre-send, a separate warmed sending domain, and no automated LinkedIn actions — agents draft, a human sends from their own session.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">03</span><h2>The delegation map</h2></div>
+  <p class="lede">This is the analysis the manual is missing. Every task in the three-phase plan was sorted on four questions: how often it recurs, whether a mistake is reversible, whether it needs judgment a rubric cannot hold, and what data class it touches. Tasks that recur often, fail reversibly, follow a rubric, and stay in CLASS-P are delegable now. Tasks that fail any one of those tests are not.</p>
+  <p class="note">Phase tags: <span class="tag pa">PA</span> ProposalApp &nbsp; <span class="tag cg">CG</span> BCS-CG GovCon &nbsp; <span class="tag cm">CMMC</span> CMMC CISO</p>
+
+  <div class="tscroll">
+    <table>
+      <caption><span class="ct">Tier 1 &mdash; Delegate now, human reviews output</span><span class="cr">Recurring &middot; reversible &middot; rubric-governed &middot; CLASS-P only</span></caption>
+      <thead><tr><th style="width:24%">Task</th><th style="width:9%">Phase</th><th style="width:34%">Why it qualifies</th><th style="width:33%">What the human keeps</th></tr></thead>
+      <tbody>
+        <tr><td>Account and opportunity research into a sourced brief</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span><span class="tag cm">CMMC</span></td><td>Public sources only — SAM.gov, USAspending award history, agency budget justifications, incumbent lookup, Apollo enrichment. Every claim carries a link or it does not ship.</td><td>Reads the brief and decides pursue or nurture. Spot-checks two source links per brief.</td></tr>
+        <tr><td>ICP and fit scoring against the approved rubric</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span><span class="tag cm">CMMC</span></td><td>Deterministic once the rubric exists. The manual already forbids inventing missing facts — an unscoreable field returns "insufficient evidence" rather than a guess.</td><td>Owns the rubric. Reviews score distribution weekly, not individual scores.</td></tr>
+        <tr><td>Compliance matrix from Sections L and M</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span></td><td>Mechanical extraction and cross-reference of published solicitation text. Highest value-to-risk ratio of any task on this list, and it serves both proposal fulfillment and BCS-CG capture.</td><td>Verifies completeness against the solicitation, decides how each requirement is answered.</td></tr>
+        <tr><td>Solicitation monitoring, amendments, Q&amp;A and due dates</td><td><span class="tag cg">CG</span></td><td>Pure watch-and-report on public postings. Missing an amendment is a real failure mode that agents remove almost entirely.</td><td>Bid/no-bid decision. Nothing else.</td></tr>
+        <tr><td>Outreach and follow-up drafting</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span><span class="tag cm">CMMC</span></td><td>Draft authority only, with no send authority — the manual's existing separation. Facts restricted to the research record and approved claims.</td><td>Approves and sends. Per-message during pilot, per-template after F-5 graduation.</td></tr>
+        <tr><td>Reply classification and routing</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span><span class="tag cm">CMMC</span></td><td>Closed label set already defined in the manual. Sequence pause on any reply is a safe default.</td><td>Answers anything substantive. Handles every escalation.</td></tr>
+        <tr><td>Demo and meeting briefs, reminders, no-show follow-up</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span><span class="tag cm">CMMC</span></td><td>Assembly from records that already exist. Low judgment, high reliability gain, and it is the task most often skipped when a small team is busy.</td><td>Runs the demo. Reviews the brief the morning of.</td></tr>
+        <tr><td>Demo recap and next-step draft</td><td><span class="tag pa">PA</span></td><td>Drafted from a sanitized operational summary, never from a raw recording or client file.</td><td>Edits and sends. Sets the commercial next step.</td></tr>
+        <tr><td>Fulfillment QA: page limits, format rules, section completeness</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span></td><td>Rule-checkable against the solicitation's own instructions. Catches the errors that get a compliant proposal thrown out on a technicality.</td><td>Signs the compliance certification. Owns the submission.</td></tr>
+        <tr><td>CRM hygiene: dedupe, field completion, next-action enforcement</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span><span class="tag cm">CMMC</span></td><td>Scoped writes to approved fields, fully reversible, and the manual already requires a daily completeness control.</td><td>Reviews a sample. Resolves genuine conflicts.</td></tr>
+        <tr><td>CMMC education content, FAQ and misconception library</td><td><span class="tag cm">CMMC</span></td><td>Built entirely on public NIST SP 800-171 control text and published CMMC program rules. No client data involved at any point.</td><td>Technical accuracy review before publication. This one is non-negotiable — wrong compliance guidance is a credibility loss.</td></tr>
+        <tr><td>Intake checklist generation and status chasing</td><td><span class="tag pa">PA</span><span class="tag cm">CMMC</span></td><td>Tracks that an item was requested, received or is pending — status metadata only, never contents. The manual's existing status-without-substance pattern.</td><td>Opens and evaluates anything a client submits.</td></tr>
+        <tr><td>Weekly scorecard assembly and watchdog digest</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span><span class="tag cm">CMMC</span></td><td>Aggregation from the systems of record. Should be a single capped daily digest, not per-item alerts — see the alert-fatigue risk in the watchdog design.</td><td>Interprets it. Decides what changes.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tscroll">
+    <table>
+      <caption><span class="ct">Tier 2 &mdash; Agent assists, a named human authors and owns</span><span class="cr">Judgment-bearing or CLASS-B &middot; agent contributes structure and first draft, never the decision</span></caption>
+      <thead><tr><th style="width:24%">Task</th><th style="width:9%">Phase</th><th style="width:34%">What the agent does</th><th style="width:33%">Where the line sits</th></tr></thead>
+      <tbody>
+        <tr><td>Proposal narrative drafting</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span></td><td>Assembles from approved boilerplate and client-released past performance against the compliance matrix; flags every requirement with no source material.</td><td>Technical approach and win themes are human-authored. Agent output is raw material, not a submission draft.</td></tr>
+        <tr><td>Past-performance library curation</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span></td><td>Maintains a structured, reusable library of client-approved narratives tagged by agency, NAICS, vehicle and scope.</td><td>Each entry needs written client release before it enters the library. Nothing enters unreleased.</td></tr>
+        <tr><td>Pricing narrative structure</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span></td><td>Produces the basis-of-estimate skeleton and the required narrative sections.</td><td>No numbers. Not rates, not hours, not totals. The manual's "human only" on pricing stays absolute.</td></tr>
+        <tr><td>Teaming and capture target shortlists</td><td><span class="tag cg">CG</span></td><td>Researches capability fit, set-aside status, vehicle access and past teaming from public records; produces a ranked shortlist with evidence.</td><td>Every approach to a prime or partner is human-initiated. Relationships are not a pipeline.</td></tr>
+        <tr><td>Demo script tailoring</td><td><span class="tag pa">PA</span></td><td>Adapts the approved demo flow to the prospect's segment and researched pain points.</td><td>Product claims come from the approved claims register only. Nothing new gets asserted about ProposalApp.</td></tr>
+        <tr><td>CMMC policy and procedure template drafting</td><td><span class="tag cm">CMMC</span></td><td>Drafts policy scaffolding mapped to public 800-171 control text, using synthetic or fully redacted examples.</td><td>Templates only. The moment a client's actual environment, architecture or configuration enters, it is Tier 3.</td></tr>
+        <tr><td>Readiness questionnaire and evidence request lists</td><td><span class="tag cm">CMMC</span></td><td>Generates the request list and tracks what is outstanding.</td><td>Requests, never responses. Returned evidence goes to the controlled environment and the agent sees only "received."</td></tr>
+        <tr><td>Training and enablement material</td><td><span class="tag cm">CMMC</span></td><td>Builds awareness training, role guides and onboarding decks from public standards.</td><td>CISO review before any client sees it.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tscroll">
+    <table>
+      <caption><span class="ct">Tier 3 &mdash; Human only, no agent involvement at any depth</span><span class="cr">Irreversible, professionally attributable, or CLASS-R &middot; not a review step — an exclusion</span></caption>
+      <thead><tr><th style="width:30%">Task</th><th style="width:12%">Phase</th><th style="width:58%">Reason</th></tr></thead>
+      <tbody>
+        <tr><td>Bid/no-bid, pricing, terms, reps and certifications, submission</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span></td><td>Legally attributable commitments with criminal exposure on false certification. The manual has this right and it should not soften.</td></tr>
+        <tr><td>CMMC scoping decisions and assessment conclusions</td><td><span class="tag cm">CMMC</span></td><td>Professional judgment carrying the assessor's or advisor's name and liability. Not delegable at any autonomy level, ever.</td></tr>
+        <tr><td>SSP and POA&amp;M authorship, evidence handling</td><td><span class="tag cm">CMMC</span></td><td>These documents are built from CUI and describe the client's actual security posture. A commercial model in this path is a reportable incident, not a policy exception.</td></tr>
+        <tr><td>Anything touching CUI, FCI, credentials, or client production systems</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span><span class="tag cm">CMMC</span></td><td>The boundary the whole practice depends on. One breach ends the compliance credibility the firm sells.</td></tr>
+        <tr><td>Fractional CISO advisory judgment and client risk acceptance</td><td><span class="tag cm">CMMC</span></td><td>The service is the judgment. Delegating it is not efficiency, it is misrepresentation.</td></tr>
+        <tr><td>First substantive reply to a live buyer, and every commitment</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span><span class="tag cm">CMMC</span></td><td>Reputation and relationship risk in a market small enough that everyone talks. Keep human through and beyond the pilot.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">04</span><h2>Where the hours actually are</h2></div>
+  <p class="lede">A first-pass estimate of net weekly hours reclaimed at steady state, built from Tier 1 and the assisted share of Tier 2. Every figure below is an <strong>assumption to be replaced by observation</strong> — this is the table step B should overwrite in its first week, not a projection to plan against.</p>
+
+  <div class="tscroll">
+    <table>
+      <caption><span class="ct">Estimated weekly hours reclaimed</span><span class="cr">Assumption &middot; not measurement &middot; volumes stated per row</span></caption>
+      <thead><tr><th style="width:26%">Task</th><th style="width:8%">Phase</th><th style="width:15%">Volume / week</th><th style="width:13%">Now, per unit</th><th style="width:13%">After, per unit</th><th style="width:25%" class="barcell">Net reclaimed</th></tr></thead>
+      <tbody>
+        <tr><td>Account research and briefs</td><td><span class="tag pa">PA</span></td><td class="num">10 briefs</td><td class="num">75 min</td><td class="num">12 min review</td><td class="num barcell">10.5 h<span class="bar" style="width:100%"></span></td></tr>
+        <tr><td>Compliance matrix build</td><td><span class="tag pa">PA</span><span class="tag cg">CG</span></td><td class="num">2 RFPs</td><td class="num">4 h</td><td class="num">45 min review</td><td class="num barcell">6.5 h<span class="bar" style="width:62%"></span></td></tr>
+        <tr><td>Outreach and follow-up drafting</td><td><span class="tag pa">PA</span></td><td class="num">25 messages</td><td class="num">15 min</td><td class="num">4 min review</td><td class="num barcell">4.5 h<span class="bar" style="width:43%"></span></td></tr>
+        <tr><td>Content first drafts</td><td><span class="tag pa">PA</span></td><td class="num">2 pieces</td><td class="num">3 h</td><td class="num">1 h edit</td><td class="num barcell">4.0 h<span class="bar" style="width:38%"></span></td></tr>
+        <tr><td>Demo and meeting briefs</td><td><span class="tag pa">PA</span></td><td class="num">5 briefs</td><td class="num">45 min</td><td class="num">10 min review</td><td class="num barcell">3.0 h<span class="bar" style="width:29%"></span></td></tr>
+        <tr><td>Solicitation and amendment watch</td><td><span class="tag cg">CG</span></td><td class="num">continuous</td><td class="num">4 h total</td><td class="num">45 min review</td><td class="num barcell">3.0 h<span class="bar" style="width:29%"></span></td></tr>
+        <tr><td>CMMC education content</td><td><span class="tag cm">CMMC</span></td><td class="num">continuous</td><td class="num">4 h total</td><td class="num">75 min review</td><td class="num barcell">2.75 h<span class="bar" style="width:26%"></span></td></tr>
+        <tr><td>Reply triage and routing</td><td><span class="tag pa">PA</span></td><td class="num">40 replies</td><td class="num">5 min</td><td class="num">1 min</td><td class="num barcell">2.5 h<span class="bar" style="width:24%"></span></td></tr>
+        <tr><td>CRM hygiene and next actions</td><td><span class="tag pa">PA</span></td><td class="num">continuous</td><td class="num">3 h total</td><td class="num">30 min review</td><td class="num barcell">2.5 h<span class="bar" style="width:24%"></span></td></tr>
+        <tr><td>Scorecard and watchdog digest</td><td><span class="tag pa">PA</span></td><td class="num">1 cycle</td><td class="num">2.5 h</td><td class="num">30 min review</td><td class="num barcell">2.0 h<span class="bar" style="width:19%"></span></td></tr>
+        <tr><td>Intake status tracking</td><td><span class="tag cm">CMMC</span></td><td class="num">continuous</td><td class="num">2.5 h total</td><td class="num">30 min review</td><td class="num barcell">2.0 h<span class="bar" style="width:19%"></span></td></tr>
+        <tr><td><em>Less: agent supervision overhead</em></td><td>&mdash;</td><td class="num">weekly</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num barcell">&minus;8 to &minus;10 h<span class="bar dim" style="width:86%"></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Gross across all three phases at steady state is roughly <strong>43 hours a week</strong>. Charter maintenance, evaluation runs, change records, approval queue time and reading the watchdog digest cost <strong>eight to ten hours</strong> against that — the line the manual never books, and the reason its own "human review time" measure matters. Net is approximately <strong>33 to 35 hours a week, a little under one full-time equivalent</strong>, spread across three domains.</p>
+  <p>Phase one alone is the number that should drive the decision to proceed: <strong>gross 28.5 hours without fulfillment, 35 with the compliance matrix included</strong>, against four to six hours of single-domain overhead. Net <strong>23 to 29 hours a week</strong> — most of a person, recovered from a three-person team, without hiring. That is a real result, and it is concentrated in exactly two places: research-to-brief, and compliance matrix construction. If those two work, the programme works. If they do not, nothing downstream saves it.</p>
+  <p class="note">Two honest caveats. These figures assume the volumes in the table, which a three-person team may not actually reach in early weeks — reclaimed hours scale with throughput, so low volume yields low return regardless of agent quality. And they assume review time stays at the "after" figures; a workflow that needs substantial rewriting rather than reviewing has negative return, which is precisely what the F-5 approval counter is built to detect.</p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">05</span><h2>Gaps by phase</h2></div>
+  <p class="lede">Read against the three-phase plan rather than the manual's own structure. Phase one has the largest omission; phase three has the smallest agent surface and the highest liability.</p>
+
+  <div class="phases">
+
+    <div class="phase">
+      <div class="phase-hd"><span class="n">PHASE 1</span><h3>ProposalApp &mdash; marketing, demo, fulfillment</h3></div>
+      <p>Marketing is well covered. Demo and fulfillment are not covered at all, and they are two-thirds of the stated scope. This is the section to write before anything is built, because fulfillment procedure determines the data model, and the data model determines what agents can be given.</p>
+      <div class="gapgrid">
+        <div>
+          <h4>Demo stage &mdash; absent</h4>
+          <ul>
+            <li>Qualification-to-demo criteria and booking flow</li>
+            <li>Tailored demo script from the approved claims register</li>
+            <li>Reminder and no-show recovery sequence</li>
+            <li>Recap, next-step draft, and demo-to-proposal conversion tracking</li>
+            <li>Demo outcome as a scored field, not a calendar event</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Fulfillment stage &mdash; absent</h4>
+          <ul>
+            <li>Engagement kickoff and scope-of-work confirmation</li>
+            <li>Compliance matrix and proposal production workflow</li>
+            <li>Format, page-limit and completeness QA before submission</li>
+            <li>Version control and client review cycles</li>
+            <li>Capacity planning — how many concurrent engagements two or three people can carry</li>
+            <li>Deadline register with the manual-fallback rule from F-8</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hardline"><b>Resolve first</b>Decide whether ProposalApp white-glove means BCS staff produce proposal content on the client's behalf. If yes, CLASS-B consent belongs in the engagement letter, and the fulfillment procedure has to name which artifacts an agent may see. If no — if BCS only configures the product and coaches — the data question mostly disappears and fulfillment delegation is far simpler. The manual cannot be finished without this answer.</div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-hd"><span class="n">PHASE 2</span><h3>BCS-CG &mdash; GovCon capture and teaming</h3></div>
+      <p>The replication table is a reasonable sketch but thin on what GovCon capture actually requires. The good news is that the highest-value phase-two capability — compliance matrix construction — gets built during phase one for fulfillment. Build it as a domain-independent skill from the start and phase two arrives largely pre-built.</p>
+      <div class="gapgrid">
+        <div>
+          <h4>Add to the replication package</h4>
+          <ul>
+            <li>Solicitation watch across SAM.gov and agency forecasts, with amendment and Q&amp;A deadline tracking</li>
+            <li>Incumbent and award-history research from public spending data</li>
+            <li>Vehicle and set-aside eligibility screening</li>
+            <li>Bid/no-bid packet assembly — agent assembles evidence, human decides</li>
+            <li>Past-performance library with written client releases</li>
+            <li>Teaming partner shortlists with capability and eligibility evidence</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Sequencing correction</h4>
+          <ul>
+            <li>Step Y separates shared from domain-specific components near the end of the build. That is too late — by then the knowledge is entangled.</li>
+            <li>Externalize domain knowledge from the first charter: rubrics, claims, templates and source lists as data files, not as prose inside agent instructions.</li>
+            <li>Then replication is a configuration swap rather than a rewrite, and phase two costs days instead of weeks.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-hd"><span class="n">PHASE 3</span><h3>CMMC CISO &mdash; GovCon implementation</h3></div>
+      <p>The manual is right to activate this last, and right that the agent surface is narrow. Worth being explicit about why: nearly all CMMC <em>delivery</em> work is Tier 3 by construction. Scoping, SSP and POA&amp;M authorship, evidence handling and assessment conclusions are CUI-bearing and professionally attributable. What remains for agents is the demand-generation and administrative layer — which is genuinely valuable and entirely safe, but it is not the delivery work.</p>
+      <div class="gapgrid">
+        <div>
+          <h4>Safe and worth building</h4>
+          <ul>
+            <li>Education content, FAQ and misconception library from public standards</li>
+            <li>Policy and procedure templates against public 800-171 control text, on synthetic examples</li>
+            <li>Awareness training and role-based enablement material</li>
+            <li>Readiness questionnaires and evidence <em>request</em> lists</li>
+            <li>Onboarding and intake status tracking, contents never seen</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Two structural questions the manual should answer</h4>
+          <ul>
+            <li><strong>BCS as an external service provider.</strong> If BCS handles client CUI in any capacity, BCS is itself in assessment scope, and every tool in the CUI path inherits that scope. This is the strongest argument for the manual's commercial/controlled split — state it as an architectural boundary with named environments, not as a handling rule.</li>
+            <li><strong>Independence.</strong> If BCS holds or intends to hold an assessor role, providing consulting to an organization it later assesses raises a conflict the manual should address directly. Which role BCS occupies changes what phase three may sell, not just how agents support it.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hardline"><b>Non-negotiable</b>A commercial model processing CUI is a security incident with reporting obligations, not a policy violation to be corrected internally. Write it in those words. It is the one line in the whole manual whose violation could end the practice, and it should read like it.</div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">06</span><h2>Revised sequence</h2></div>
+  <p class="lede">Same content as A–Z, reordered so evidence arrives before investment. Gates are conditions, not dates — a wave does not start because time passed.</p>
+  <div class="seq">
+
+    <div class="step">
+      <span class="when">Days 1&ndash;3</span>
+      <div>
+        <h3>Thin slice</h3>
+        <p>One task type: account research producing a sourced brief. Spreadsheet as the work record, an existing channel for approvals, no runtime, no OAuth gateway, no charter. Five real target accounts through it. Record actual minutes per brief and every defect. This is also step B's baseline, gathered for free.</p>
+      </div>
+    </div>
+    <div class="gate"><span class="when">Gate</span><div>Three of five briefs usable with light edits, and observed time per brief beats the manual baseline. If not, the problem is knowledge and rubric quality — fix that before building anything around it.</div></div>
+
+    <div class="step">
+      <span class="when">Weeks 1&ndash;4</span>
+      <div>
+        <h3>Wave 1 &mdash; ProposalApp marketing, human-triggered</h3>
+        <p>A–Z steps A, C, D, E, K, N, F and L, in that order: owners, data classification with the three CLASS tiers from F-4, offer, systems of record, knowledge, work schema, charters, skills. Research, outreach drafting, reply triage and demo briefs go live under per-send approval. GitHub from day one. No unattended writes, so no Hermes and no Composio yet. Ten-case eval set per workflow before each goes live.</p>
+      </div>
+    </div>
+    <div class="gate"><span class="when">Gate</span><div>Twenty scored accounts, five approved outreach records, zero sensitive-information events, and net hours reclaimed measured and positive.</div></div>
+
+    <div class="step">
+      <span class="when">Weeks 5&ndash;10</span>
+      <div>
+        <h3>Wave 2 &mdash; Demo, fulfillment, and the runtime</h3>
+        <p>Write the demo and fulfillment procedures that F-4 identified as missing. Build the compliance matrix skill as domain-independent from the outset. Now add Hermes and Composio, because scheduled unattended writes are finally the actual requirement. Watchdog as a single capped daily digest. First template graduations under the F-5 counter. Emergency stop defined and tested.</p>
+      </div>
+    </div>
+    <div class="gate"><span class="when">Gate</span><div>Two engagements fulfilled with agent-assisted production and no compliance defects. Defect rate declining for three consecutive weeks. Emergency stop tested end to end.</div></div>
+
+    <div class="step">
+      <span class="when">Weeks 11&ndash;16</span>
+      <div>
+        <h3>Wave 3 &mdash; BCS-CG activation</h3>
+        <p>Swap domain knowledge rather than rebuilding. Add solicitation watch, award-history research and teaming shortlists. Compliance matrix carries over unchanged if Wave 2 built it domain-independent. Second named owner joins, or Wave 3 waits.</p>
+      </div>
+    </div>
+    <div class="gate"><span class="when">Overlap rule</span><div>A new domain activates only when the prior domain has met its defect-rate and human-review-time targets for three consecutive weeks, <em>or</em> a named additional owner takes it. Sales pressure will push against this; the rule exists because two or three people cannot supervise three domains through their first defects at once.</div></div>
+
+    <div class="step">
+      <span class="when">Week 17+</span>
+      <div>
+        <h3>Wave 4 &mdash; CMMC Growth, marketing layer only</h3>
+        <p>Education content, prospecting, qualification, scheduling and intake status. Delivery work stays in the controlled environment with no agent involvement at any depth. Resolve the external-service-provider and independence questions from section 05 before selling, not after.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">07</span><h2>Before you finalize</h2></div>
+  <p class="lede">Five answers change the shape of the manual. The first two change it materially.</p>
+  <ol class="qlist">
+    <li><div><b>Are the two-to-three co-workers per project the same people across all three, or distinct?</b><span>If the same, the overlap rule in section 06 is the most important line in the revision and the phase timeline stretches considerably. If distinct, the governance model needs per-domain owners and the role collapse in F-1 changes shape.</span></div></li>
+    <li><div><b>Does ProposalApp white-glove mean BCS staff produce proposal content for clients?</b><span>This determines whether CLASS-B exists, whether consent belongs in the engagement letter, and whether fulfillment is delegable at all. Everything in section 05 phase one depends on it.</span></div></li>
+    <li><div><b>Does ProposalApp the product store client proposal data?</b><span>If so there is a second, separate question — product security posture and what BCS commits to in its own terms — which is outside this manual's scope but should not be discovered later.</span></div></li>
+    <li><div><b>Which CMMC role does BCS hold or intend to hold?</b><span>Consultancy, registered provider, or assessor. It changes the independence constraints on phase three and therefore what the CISO practice can sell to whom.</span></div></li>
+    <li><div><b>What is the actual monthly ceiling for tools and model usage combined?</b><span>F-3 recommends deferring two systems and three models. That recommendation is only correct against a real number, and the manual currently has none.</span></div></li>
+  </ol>
+</section>
+
+<footer>
+  <span>Review of BCS AI Workforce Implementation Manual v1.0</span>
+  <span>8 September 2026</span>
+  <span>Findings F-1 &ndash; F-8 &middot; Delegation tiers 1 &ndash; 3</span>
+</footer>
+
+</div>
